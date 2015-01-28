@@ -1,31 +1,44 @@
-        function ImagePopup( module ) {
+function ImagePopup( module ) {
+    "use strict";
             
-            this.ImagePopupController = function($scope, $modalInstance, filename) {
-                $scope.filename = filename;                
-                $scope.image = (filename.search(".jpg") > 1);
-                if(filename.search(".jpg") < 0) {
-                    $scope.youtubelink = "//www.youtube.com/embed/" + filename;                
-                } else {
-                    $scope.youtubelink = "";                
-                }
-                $scope.close = function() {
-                    $modalInstance.close();
-                }
-            }
-                
-            this.Open = function( $modal, filename ) {
-                
-                $modal.open({
-                    templateUrl: 'myModalContent.html',
-                    controller: 'ModalInstanceCtrl',
-                    size: "",
-                    resolve: {
-                        filename: function () {
-                          return filename;
-                        }
-                    }
-                });
-            }
-            
-            module.controller('ModalInstanceCtrl', this.ImagePopupController );            
+    function Slide ( filename, active) {
+        this.filename = filename;
+        this.active = active;
+    }
+
+    this.ImagePopupController = function($scope, $modalInstance, slides) {
+        $scope.slides = slides;                
+
+        //$scope.image = (filename.search(".jpg") > 1);
+        //if(filename.search(".jpg") < 0) {
+        //    $scope.youtubelink = "//www.youtube.com/embed/" + filename;                
+        //} else {
+        //    $scope.youtubelink = "";                
+        //}
+        $scope.close = function() {
+            $modalInstance.close();
+        };
+    };
+  
+    this.open = function( $modal, mediafiles, selectedFilename ) {
+        
+        var slides = [];
+        for (var i = 0; i < mediafiles.length; i++) { 
+            slides.push(  
+                new Slide(
+                    mediafiles[i].filename,
+                    mediafiles[i].filename == selectedFilename) );
         }
+
+        $modal.open({
+            templateUrl: 'myModalContent.html',
+            controller: 'ModalInstanceCtrl',
+            size: "",
+            resolve: {
+                slides: function () { return slides; }
+            }
+        });
+    };
+
+    module.controller('ModalInstanceCtrl', this.ImagePopupController );            
+}
