@@ -3,3 +3,8 @@
 #################
 
 .idea/
+.tscache/
+node_modules/grunt/
+node_modules/grunt-ts/
+src/main/*.js
+src/main/*.js.map

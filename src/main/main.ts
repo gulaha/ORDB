@@ -1,9 +1,11 @@
-"use strict";
+/// <reference path="..\..\typings\angularjs\angular.d.ts" />
+/// <reference path="imagepopup.ts" />
 
-var app = angular.module("main", ['ui.bootstrap', 'uiGmapgoogle-maps']);
+var app: any;
+app = angular.module("main", ['ui.bootstrap', 'uiGmapgoogle-maps']);
 
-var imageModal = new ImagePopup( app );
- 
+var imageModal: any = new ImagePopup( app );
+
 app.controller("mainController", 
     function ($scope, $modal) {
         // 59.408507, 15.087064

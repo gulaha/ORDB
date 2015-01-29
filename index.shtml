@@ -16,7 +16,7 @@
     <style>
         .angular-google-map-container { height: 400px; }
     </style>
-    <script src="angular.min.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>    
 </head>
 <body>
     <!--#include file="main.shtml"-->
@@ -35,8 +35,8 @@
     <script src='lodash.js'></script>
     <script src='angular-google-maps.js'></script>
     
-    <script src="ImagePopup.js"></script>
-    <script src="main.js"></script>
+    <script src="src/main/imagepopup.js"></script>
+    <script src="src/main/main.js"></script>
 </body>
 
 </html>
