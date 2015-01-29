@@ -1,0 +1,5 @@
+Options Includes
+AddType text/html .shtml
+AddHandler server-parsed .shtml
+
+DirectoryIndex index.php index.php3 index.shtml index.html index.htm index.html.var
