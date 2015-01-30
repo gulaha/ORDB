@@ -49,7 +49,7 @@
                         <h2>Beskrivning</h1>
                         <span>{{description}}</span>
                         <h2>Översikt</h1>
-                        <h2>Leder/Problem</h1>
+                        <h2>Leder/Problem</h1>                        
                         <table class="table-condensed" >
                             <thead>
                                 <th>Namn</th>
@@ -70,6 +70,9 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <button type="button" class="btn btn-link">
+                            <span class="glyphicon glyphicon-plus-sign"></span> Ny led/problem
+                        </button>                        
                     </div>
                 </div>
             </div>

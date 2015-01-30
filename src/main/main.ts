@@ -1,19 +1,10 @@
 /// <reference path="..\..\typings\angularjs\angular.d.ts" />
 /// <reference path="imagepopup.ts" />
 
+//var module: ng.IModule = angular.module("main", ['ui.bootstrap', 'uiGmapgoogle-maps']);
 var app = angular.module("main", ['ui.bootstrap', 'uiGmapgoogle-maps']);
 
 var imageModal: any = new ImagePopup( app );
-
-interface IMainScope extends ng.IScope {
-    map: any;
-    waysup: Route[];
-    place: string;
-    crag: string;
-    description: string;
-    mediaFiles: IMediaFile[];
-    thumbnailClick(filename: string);
-}
 
 interface IMediaFile {
     exist: boolean;
@@ -21,8 +12,8 @@ interface IMediaFile {
     filename: string;
 }
 
-app.controller("mainController", 
-    function ($scope : IMainScope, $modal, $http) {
+/*module.controller("mainController", 
+    function ($scope: IMainScope, $modal, $http: ng.IHttpService) {
         // 59.408507, 15.087064
         var placePos = { latitude: 59.408507, longitude: 15.087064 };
         var marker = {
@@ -37,11 +28,7 @@ app.controller("mainController",
             zoom: 12,
             options: { scrollwheel: false }
         };
-        //$scope.waysup = [
-        //    new Wayup("Viktors sprajs", "10", "5"), 
-        //    new Wayup("Björkleden", "12", "4+"), 
-        //    new Wayup("Jojo", "9", "5+")];
-        
+
         var site = "http://10.0.0.8/ordb/";
         var page = "main.php";
         $http.get(site + page)
@@ -66,6 +53,59 @@ app.controller("mainController",
         };
     }
 );
+*/
+
+interface IMainScope extends ng.IScope {
+    map: any;
+    waysup: Route[];
+    place: string;
+    crag: string;
+    description: string;
+    mediaFiles: IMediaFile[];
+    thumbnailClick(filename: string);
+}
+
+class MainController {
+    
+    constructor(private $scope: IMainScope, $modal, $http: ng.IHttpService) {
+        // 59.408507, 15.087064
+        var placePos = { latitude: 59.408507, longitude: 15.087064 };
+        var marker = {
+            latitude: 59.408507, 
+            longitude: 15.087064,
+            id: "DummyID"
+        };
+
+        $scope.map = { 
+            center: placePos,
+            markers: [marker],
+            zoom: 12,
+            options: { scrollwheel: false }
+        };
+
+        var site = "http://10.0.0.8/ordb/";
+        var page = "main.php";
+        $http.get<Route[]>(site + page)
+        .success(function(response) {$scope.waysup = response;});
+        
+        $scope.place = "Rosendal";
+        $scope.crag = "Ravinen norra sidan";
+        $scope.description = "Ravinens norra sida är svagt överhängande. Klippan är mycket uppbruten och flertalet leder är därför naturliga eller med stödbulning. Se upp för lösa delar på klippan.";
+        $scope.mediaFiles = [
+            new ImageFile("media/1.jpg"),
+            new ImageFile("media/2.jpg"),
+            new ImageFile("media/3.jpg"),
+            new ImageFile("media/4.jpg")
+            //new MovieLink("https://i.ytimg.com/vi/5XkHZx1wLsk/mqdefault.jpg",
+            //              "5XkHZx1wLsk")
+        ];
+        $scope.thumbnailClick = function(filename: string) {
+            imageModal.open($modal, $scope.mediaFiles, filename);
+        };
+    }
+}
+
+app.controller("mainController", MainController );
 
 class Route {
     name: string;
