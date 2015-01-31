@@ -1,81 +1,12 @@
 <div ng-app="main">
     <!--#include file="imagepopup.html"-->
     <div class="container-fluid" ng-controller="mainController">
-        <nav class="navbar navbar-default">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <img alt="" height="32" src="media\okk_logga.jpg">
-                </a>
-                <p class="navbar-text">ÖKK Leddatabas</p>
-            </div>
-            <ul class="nav navbar-nav pull-right">
-                <li>
-                    <form class="navbar-nav navbar-form" role="search">
-                        <div class="form-group">
-                            <input class="form-control" type="text"  placeholder="Search">
-                            <a href="#"><span class="glyphicon glyphicon-search"></span> </a>                                
-                        </div>
-                    </form>
-                </li>
-                <li><a class="navbar-link" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a class="navbar-link" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            </ul>                
-        </nav>            
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{place}}</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-6 col-md-8 col-lg-9" > 
-                        <div class="row">
-                            <div class="col-sm-6 col-xs-12" >
-                                <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options'>
-                                    <ui-gmap-markers models="map.markers" coords="'self'" icon="'icon'">
-                                    </ui-gmap-markers>
-                                </ui-gmap-google-map>
-                            </div>
-                            <div class="col-sm-6 col-xs-12" >
-                                <div ng-repeat="file in mediaFiles" class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                                    <a ng-if="file.exist" ng-href ng-click="thumbnailClick(file.filename)" class="thumbnail"> 
-                                        <img ng-src={{file.thumbnail}} alt="Brantaväggen" >
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3" >
-                        <h1>Klippa: {{crag}}</h1>
-                        <h2>Beskrivning</h1>
-                        <span>{{description}}</span>
-                        <h2>Översikt</h1>
-                        <h2>Leder/Problem</h1>                        
-                        <table class="table-condensed" >
-                            <thead>
-                                <th>Namn</th>
-                                <th>Information</th>
-                                <th></th>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="ways in waysup">
-                                    <td>
-                                        <span>{{ways.name}}</span>
-                                    </td>                                
-                                    <td>
-                                        <span>Höjd: {{ways.length}} meter</span>
-                                    </td>                                
-                                    <td>
-                                        <span class="badge">{{ways.grade}}</span>
-                                    </td>                                
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button type="button" class="btn btn-link">
-                            <span class="glyphicon glyphicon-plus-sign"></span> Ny led/problem
-                        </button>                        
-                    </div>
-                </div>
-            </div>
-        </div>        
+        <!--#include file="navbar.html"-->
+        <div ng-if="uiMode==0">
+            <!--#include file="overview.html"-->
+        </div>
+        <div ng-if="uiMode==1">
+            <!--#include file="routeform.html"-->
+        </div>
     </div>        
 </div>        
