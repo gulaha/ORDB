@@ -17,4 +17,9 @@
         <li><a class="navbar-link" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a class="navbar-link" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>                
-</nav>            
+</nav>     
+<div ng-repeat="alert in alerts.alerts" class="alert" role="alert" ng-class="{ 'alert-success': alert.success(), 'alert-info': alert.info(), 'alert-warning': alert.warning(), 'alert-danger': alert.danger() }">
+    <button type="button" class="close" ng-click="alerts.Remove(alert)" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <span ng-if="!alert.isHtml">{{alert.text}}</span>
+    <span ng-if="alert.isHtml" ng-bind-html="alert.text" id="explicitlyTrustedHtml"></span>
+</div>
