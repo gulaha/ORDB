@@ -1,22 +1,30 @@
 <nav class="navbar navbar-default">
     <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsenavbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>        
         <a class="navbar-brand" href="#">
             <img alt="" height="32" src="media\okk_logga.jpg">
         </a>
         <p class="navbar-text">ÖKK Leddatabas</p>
     </div>
-    <ul class="nav navbar-nav pull-right">
-        <li>
-            <form class="navbar-nav navbar-form" role="search">
-                <div class="form-group">
-                    <input class="form-control" type="text"  placeholder="Search">
-                    <a href="#"><span class="glyphicon glyphicon-search"></span> </a>                                
-                </div>
-            </form>
-        </li>
-        <li><a class="navbar-link" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a class="navbar-link" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>                
+    <div class="collapse navbar-collapse" id="collapsenavbar">
+        <ul class="nav navbar-nav pull-right">
+            <li>
+                <form class="navbar-form" role="search">
+                    <div class="form-group">
+                        <input class="form-control" type="text"  placeholder="Search">
+                        <a class="navbar-link" href="#"><span class="glyphicon glyphicon-search"></span> </a>                                
+                    </div>
+                </form>
+            </li>
+            <li><a class="navbar-link" href="#"><span class="glyphicon glyphicon-user"></span> Registrera</a></li>
+            <li><a class="navbar-link" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>   
+    </div>
 </nav>     
 <div ng-repeat="alert in alerts.alerts" class="alert" role="alert" ng-class="{ 'alert-success': alert.success(), 'alert-info': alert.info(), 'alert-warning': alert.warning(), 'alert-danger': alert.danger() }">
     <button type="button" class="close" ng-click="alerts.Remove(alert)" aria-label="Close"><span aria-hidden="true">&times;</span></button>
