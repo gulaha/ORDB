@@ -1,28 +1,37 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">{{place}}</h3>
+<div class="row">
+    <div class="col-sm-4" >
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Översikt</h3>
+            </div>
+            <div class="panel-body">
+                <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options'>
+                    <ui-gmap-markers models="map.markers" coords="'self'" icon="'icon'">
+                    </ui-gmap-markers>
+                </ui-gmap-google-map>
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-sm-6 col-md-8 col-lg-9" > 
-                <div class="row">
-                    <div class="col-sm-6 col-xs-12" >
-                        <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options'>
-                            <ui-gmap-markers models="map.markers" coords="'self'" icon="'icon'">
-                            </ui-gmap-markers>
-                        </ui-gmap-google-map>
-                    </div>
-                    <div class="col-sm-6 col-xs-12" >
-                        <div ng-repeat="file in mediaFiles" class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                            <a ng-if="file.exist" ng-href ng-click="thumbnailClick(file.filename)" class="thumbnail"> 
-                                <img ng-src={{file.thumbnail}} alt="Brantaväggen" >
-                            </a>
-                        </div>
-                    </div>
+    <div class="col-sm-4" >
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{place}}</h3>
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="file in mediaFiles" class="col-lg-3 col-md-4 col-sm-4 col-xs-3">
+                    <a ng-if="file.exist" ng-href ng-click="thumbnailClick(file.filename)" class="thumbnail"> 
+                        <img ng-src={{file.thumbnail}} alt="Brantaväggen" >
+                    </a>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-4 col-lg-3" >
-                <h1>Klippa: {{crag}}</h1>
+        </div>
+    </div>
+    <div class="col-sm-4" >
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Klippa: {{crag}}</h3>
+            </div>
+            <div class="panel-body">
                 <h2>Beskrivning</h1>
                 <span>{{description}}</span>
                 <h2>Översikt</h1>
