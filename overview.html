@@ -32,30 +32,37 @@
                 <h3 class="panel-title">Klippa: {{crag}}</h3>
             </div>
             <div class="panel-body">
-                <h2>Beskrivning</h1>
+                <h3>Beskrivning</h3>
                 <span>{{description}}</span>
-                <h2>Översikt</h1>
-                <h2>Leder/Problem</h1>                        
-                <table class="table-condensed" >
-                    <thead>
-                        <th>Namn</th>
-                        <th>Information</th>
-                        <th></th>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="ways in waysup">
-                            <td>
-                                <span>{{ways.name}}</span>
-                            </td>                                
-                            <td>
-                                <span>Höjd: {{ways.length}} meter</span>
-                            </td>                                
-                            <td>
-                                <span class="badge">{{ways.grade}}</span>
-                            </td>                                
-                        </tr>
-                    </tbody>
-                </table>
+                <h3>Översikt</h3>
+                <h3>Leder/Problem</h3>            
+                <accordion>
+                    <accordion-group ng-repeat="wayup in waysup" is-open="status.open">
+                        <accordion-heading>
+                            <div class="row">
+                                <div class="col-xs-10" >
+                                    <span>{{wayup.name}}</span>
+                                    <span class="pull-right badge">{{wayup.grade}}</span>
+                                </div>
+                                <div class="col-xs-2" >
+                                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                                </div>
+                            </div>                                
+                        </accordion-heading>
+                        <span ng-if="wayup.length">Höjd: {{wayup.length}} meter </span>
+                        FA: bestigare, datum <br/>
+                        {{wayup.description}}<br/>
+                        <button type="button" class="btn btn-link btn-sm" >
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"> </span>
+                        </button>
+                        <button type="button" class="btn btn-link btn-sm" >
+                            <span class="glyphicon glyphicon-comment" aria-hidden="true"> </span>
+                        </button>
+                        <button type="button" class="btn btn-link btn-sm" >
+                            <span class="glyphicon glyphicon-picture" aria-hidden="true"> </span>
+                        </button>
+                    </accordion-group>
+                </accordion>
                 <button type="button" class="btn btn-link" ng-click="newRouteClick()">
                     <span class="glyphicon glyphicon-plus-sign"></span> Ny led/problem
                 </button>                        
